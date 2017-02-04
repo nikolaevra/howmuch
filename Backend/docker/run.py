@@ -1,7 +1,6 @@
 from flask import Flask, request
 
 app = Flask(__name__)
-api = Api(app)
 
 @app.route('/get-location', methods=['POST'])
 def createCategory():
