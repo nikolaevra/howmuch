@@ -22,14 +22,10 @@ def curl_request(lon, lat):
 
 
 class HelloWorld(Resource):
-    def get(self):
-        args = request.args
-        print (args)  # For debugging
-        lon = args['lon']
-        lat = args['lat']
+    def get(self, lon, lat):
         return flask.jsonify(curl_request(lon, lat))
 
-api.add_resource(HelloWorld, '/')
+api.add_resource(HelloWorld, '/<string:lon><string:lat>')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
