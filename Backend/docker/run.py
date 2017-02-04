@@ -50,7 +50,7 @@ def curl_request(lat, lon, radius, price):
     try:
         r = requests.get(url, headers=headers).content
         obj = json.loads(r)
-        return json.dumps(obj)
+        return parse_data(obj, price)
     except URLError, e:
         return jsonify('No API!'), e
 
