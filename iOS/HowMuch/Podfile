@@ -7,5 +7,7 @@ target 'HowMuch' do
 
   # Pods for HowMuch
 pod 'AlamofireSwiftyJSON'
+ pod 'GoogleMaps'
+  pod 'GooglePlaces'
 
 end

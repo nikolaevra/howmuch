@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		77183D56EF233997E3982B97 /* Pods_HowMuch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C93A7241A97F54F20F7970BB /* Pods_HowMuch.framework */; };
 		D2BC594F1E457DCB00FE1ECC /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC594E1E457DCB00FE1ECC /* API.swift */; };
+		D2BC59511E45872B00FE1ECC /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BC59501E45872B00FE1ECC /* Launch.storyboard */; };
 		D2BDD2FF1E457A2D004ACC76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BDD2FE1E457A2D004ACC76 /* AppDelegate.swift */; };
 		D2BDD3011E457A2D004ACC76 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BDD3001E457A2D004ACC76 /* ViewController.swift */; };
 		D2BDD3041E457A2D004ACC76 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BDD3021E457A2D004ACC76 /* Main.storyboard */; };
 		D2BDD3061E457A2D004ACC76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2BDD3051E457A2D004ACC76 /* Assets.xcassets */; };
-		D2BDD3091E457A2D004ACC76 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BDD3071E457A2D004ACC76 /* LaunchScreen.storyboard */; };
 		D2BDD3121E457B8D004ACC76 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BDD3111E457B8D004ACC76 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -21,12 +21,12 @@
 		6BC1AD3F3F20C108361B3BAA /* Pods-HowMuch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HowMuch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HowMuch/Pods-HowMuch.debug.xcconfig"; sourceTree = "<group>"; };
 		C93A7241A97F54F20F7970BB /* Pods_HowMuch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HowMuch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2BC594E1E457DCB00FE1ECC /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		D2BC59501E45872B00FE1ECC /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		D2BDD2FB1E457A2D004ACC76 /* HowMuch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HowMuch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2BDD2FE1E457A2D004ACC76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2BDD3001E457A2D004ACC76 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D2BDD3031E457A2D004ACC76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D2BDD3051E457A2D004ACC76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D2BDD3081E457A2D004ACC76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D2BDD30A1E457A2D004ACC76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2BDD3111E457B8D004ACC76 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E11A4BC7DBD032E549401309 /* Pods-HowMuch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HowMuch.release.xcconfig"; path = "Pods/Target Support Files/Pods-HowMuch/Pods-HowMuch.release.xcconfig"; sourceTree = "<group>"; };
@@ -87,8 +87,8 @@
 				D2BDD3001E457A2D004ACC76 /* ViewController.swift */,
 				D2BDD3021E457A2D004ACC76 /* Main.storyboard */,
 				D2BDD3051E457A2D004ACC76 /* Assets.xcassets */,
-				D2BDD3071E457A2D004ACC76 /* LaunchScreen.storyboard */,
 				D2BDD30A1E457A2D004ACC76 /* Info.plist */,
+				D2BC59501E45872B00FE1ECC /* Launch.storyboard */,
 			);
 			path = HowMuch;
 			sourceTree = "<group>";
@@ -165,9 +165,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2BDD3091E457A2D004ACC76 /* LaunchScreen.storyboard in Resources */,
 				D2BDD3061E457A2D004ACC76 /* Assets.xcassets in Resources */,
 				D2BDD3041E457A2D004ACC76 /* Main.storyboard in Resources */,
+				D2BC59511E45872B00FE1ECC /* Launch.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,14 +242,6 @@
 				D2BDD3031E457A2D004ACC76 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		D2BDD3071E457A2D004ACC76 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D2BDD3081E457A2D004ACC76 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

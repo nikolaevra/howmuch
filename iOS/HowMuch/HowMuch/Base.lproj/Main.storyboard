@@ -1,14 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="HowMuch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +21,67 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rwf-MR-o4X">
+                                <rect key="frame" x="16" y="305" width="343" height="57"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="37"/>
+                                <state key="normal" title="GO!">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mmD-bE-4Ah">
+                                <rect key="frame" x="16" y="159" width="343" height="57"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="37"/>
+                                <state key="normal" title="HOW MUCH?">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jyk-WD-IAo">
+                                <rect key="frame" x="86" y="236.5" width="222" height="42"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="35"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="$" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NkB-dY-Cfe">
+                                <rect key="frame" x="67" y="241" width="242" height="36"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UAo-ZC-sby">
+                                <rect key="frame" x="77" y="286" width="240" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="mmD-bE-4Ah" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="0nT-ab-I3l"/>
+                            <constraint firstItem="mmD-bE-4Ah" firstAttribute="trailing" secondItem="rwf-MR-o4X" secondAttribute="trailing" id="2s9-vX-Blp"/>
+                            <constraint firstItem="mmD-bE-4Ah" firstAttribute="leading" secondItem="rwf-MR-o4X" secondAttribute="leading" id="5G2-Je-xb9"/>
+                            <constraint firstItem="rwf-MR-o4X" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="9Da-9G-A3o"/>
+                            <constraint firstItem="NkB-dY-Cfe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="51" id="C2h-iv-PR2"/>
+                            <constraint firstItem="jyk-WD-IAo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="70" id="C9b-V4-4c5"/>
+                            <constraint firstItem="NkB-dY-Cfe" firstAttribute="baseline" secondItem="jyk-WD-IAo" secondAttribute="baseline" id="Loe-9m-Dwt"/>
+                            <constraint firstItem="mmD-bE-4Ah" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Rvc-4a-ouT"/>
+                            <constraint firstItem="NkB-dY-Cfe" firstAttribute="top" secondItem="mmD-bE-4Ah" secondAttribute="bottom" constant="25" id="e9P-Ie-Gux"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jyk-WD-IAo" secondAttribute="trailing" constant="51" id="hLR-aY-kE9"/>
+                            <constraint firstItem="rwf-MR-o4X" firstAttribute="top" secondItem="NkB-dY-Cfe" secondAttribute="bottom" constant="28" id="rcd-tG-lLP"/>
+                            <constraint firstItem="mmD-bE-4Ah" firstAttribute="centerX" secondItem="NkB-dY-Cfe" secondAttribute="centerX" id="xif-gM-Pde"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="goButton" destination="rwf-MR-o4X" id="7aa-de-Lbp"/>
+                        <outlet property="howMuchLabel" destination="mmD-bE-4Ah" id="3yi-oK-6gp"/>
+                        <outlet property="userInput" destination="jyk-WD-IAo" id="YFA-PM-AO3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-119.2" y="122.78860569715144"/>
         </scene>
     </scenes>
 </document>
