@@ -9,6 +9,7 @@ app = Flask(__name__)
 def getLocation():
     lat = request.form['lat']
     lon = request.form['lon']
+    radius = request.form['radius']
     price = request.form['price']
 
     return curl_request(lat, lon)
@@ -22,9 +23,9 @@ def curl_request(lat, lon):
     url = 'https://developers.zomato.com/api/v2.1/search?lat={lat}&lon={lon}&q=pizza'.format(lat=lat, lon=lon)
 
     try:
-        r = requests.get(url, headers=headers)
-        print(r)
-        return json.dumps(r.content)
+        r = requests.get(url, headers=headers).content
+        obj = json.loads(r)
+        return json.dumps(obj)
     except URLError, e:
         return jsonify('No API!'), e
 
