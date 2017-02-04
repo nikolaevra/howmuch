@@ -1,4 +1,4 @@
-FROM python:3.5-alpine
+FROM python:2.7-alpine
 ADD ./code /code
 WORKDIR /code
 RUN pip install -r requirements.txt
