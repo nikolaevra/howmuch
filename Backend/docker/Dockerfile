@@ -1,5 +1,5 @@
 FROM ubuntu:xenial
-ADD ./code /code
+ADD . /code
 WORKDIR /code
 RUN apt-get update && apt-get install -y \
     python3.5 \
