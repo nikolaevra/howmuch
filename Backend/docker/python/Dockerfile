@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:trusty
 ADD ./code /code
 WORKDIR /code
 RUN apt-get update && apt-get install -y \
