@@ -10,7 +10,7 @@ def getLocation():
     lon = request.form['lon']
     price = request.form['price']
 
-    curl_request(lat, lon)
+    return curl_request(lat, lon)
 
 def curl_request(lat, lon):
     headers = {
@@ -22,7 +22,7 @@ def curl_request(lat, lon):
 
     try:
         r = requests.get(url, headers=headers)
-        return r.json()
+        return json.dumps(r)
     except URLError, e:
         return jsonify('No API!'), e
 
