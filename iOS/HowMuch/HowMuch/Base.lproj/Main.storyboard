@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="K0t-0U-MCY">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -28,6 +28,9 @@
                                 <state key="normal" title="GO!">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="didTabGo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QtA-RH-uYv"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mmD-bE-4Ah">
                                 <rect key="frame" x="16" y="159" width="343" height="57"/>
@@ -37,7 +40,7 @@
                                 </state>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jyk-WD-IAo">
-                                <rect key="frame" x="86" y="236.5" width="222" height="42"/>
+                                <rect key="frame" x="86" y="236" width="203" height="42"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="35"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -51,13 +54,8 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UAo-ZC-sby">
-                                <rect key="frame" x="77" y="286" width="240" height="0.0"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.68814373016357422" green="0.8787580132484436" blue="0.90054875612258911" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="mmD-bE-4Ah" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="0nT-ab-I3l"/>
                             <constraint firstItem="mmD-bE-4Ah" firstAttribute="trailing" secondItem="rwf-MR-o4X" secondAttribute="trailing" id="2s9-vX-Blp"/>
@@ -68,7 +66,7 @@
                             <constraint firstItem="NkB-dY-Cfe" firstAttribute="baseline" secondItem="jyk-WD-IAo" secondAttribute="baseline" id="Loe-9m-Dwt"/>
                             <constraint firstItem="mmD-bE-4Ah" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Rvc-4a-ouT"/>
                             <constraint firstItem="NkB-dY-Cfe" firstAttribute="top" secondItem="mmD-bE-4Ah" secondAttribute="bottom" constant="25" id="e9P-Ie-Gux"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="jyk-WD-IAo" secondAttribute="trailing" constant="51" id="hLR-aY-kE9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jyk-WD-IAo" secondAttribute="trailing" constant="70" id="hLR-aY-kE9"/>
                             <constraint firstItem="rwf-MR-o4X" firstAttribute="top" secondItem="NkB-dY-Cfe" secondAttribute="bottom" constant="28" id="rcd-tG-lLP"/>
                             <constraint firstItem="mmD-bE-4Ah" firstAttribute="centerX" secondItem="NkB-dY-Cfe" secondAttribute="centerX" id="xif-gM-Pde"/>
                         </constraints>
@@ -83,5 +81,65 @@
             </objects>
             <point key="canvasLocation" x="-119.2" y="122.78860569715144"/>
         </scene>
+        <!--Restaurants-->
+        <scene sceneID="r1m-SE-bKf">
+            <objects>
+                <viewController id="wph-u5-LOW" customClass="MapViewController" customModule="HowMuch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZM7-EQ-sgH"/>
+                        <viewControllerLayoutGuide type="bottom" id="qz1-Tu-1cY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="26S-Sa-940">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Restaurants" image="rest" id="tmy-KN-Obo"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3mB-Yz-0qP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1572" y="122.78860569715144"/>
+        </scene>
+        <!--My Menu-->
+        <scene sceneID="2k6-YN-5Jq">
+            <objects>
+                <viewController id="SWK-RQ-SHp" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yBe-hs-qAw"/>
+                        <viewControllerLayoutGuide type="bottom" id="PR3-QK-KrC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aSN-U4-JQX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="My Menu" image="my" id="eok-Hz-Ad6"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MWc-ID-gR0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1572" y="931"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="xnI-Bq-bRN">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="K0t-0U-MCY" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="ggF-To-kzI">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="wph-u5-LOW" kind="relationship" relationship="viewControllers" id="oC0-G9-Wko"/>
+                        <segue destination="SWK-RQ-SHp" kind="relationship" relationship="viewControllers" id="kDO-7R-CRL"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4cm-5S-pU5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="632.79999999999995" y="122.78860569715144"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="my" width="32" height="32"/>
+        <image name="rest" width="32" height="32"/>
+    </resources>
 </document>

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		77183D56EF233997E3982B97 /* Pods_HowMuch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C93A7241A97F54F20F7970BB /* Pods_HowMuch.framework */; };
+		D29E3F391E4616BF00142199 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29E3F381E4616BF00142199 /* MapViewController.swift */; };
+		D29E3F3B1E46191B00142199 /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D29E3F3A1E46191B00142199 /* InfoView.xib */; };
+		D29E3F3D1E46192A00142199 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29E3F3C1E46192A00142199 /* InfoView.swift */; };
 		D2BC594F1E457DCB00FE1ECC /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC594E1E457DCB00FE1ECC /* API.swift */; };
 		D2BC59511E45872B00FE1ECC /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BC59501E45872B00FE1ECC /* Launch.storyboard */; };
 		D2BDD2FF1E457A2D004ACC76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BDD2FE1E457A2D004ACC76 /* AppDelegate.swift */; };
@@ -20,6 +23,9 @@
 /* Begin PBXFileReference section */
 		6BC1AD3F3F20C108361B3BAA /* Pods-HowMuch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HowMuch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HowMuch/Pods-HowMuch.debug.xcconfig"; sourceTree = "<group>"; };
 		C93A7241A97F54F20F7970BB /* Pods_HowMuch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HowMuch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D29E3F381E4616BF00142199 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		D29E3F3A1E46191B00142199 /* InfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoView.xib; sourceTree = "<group>"; };
+		D29E3F3C1E46192A00142199 /* InfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		D2BC594E1E457DCB00FE1ECC /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		D2BC59501E45872B00FE1ECC /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		D2BDD2FB1E457A2D004ACC76 /* HowMuch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HowMuch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +95,9 @@
 				D2BDD3051E457A2D004ACC76 /* Assets.xcassets */,
 				D2BDD30A1E457A2D004ACC76 /* Info.plist */,
 				D2BC59501E45872B00FE1ECC /* Launch.storyboard */,
+				D29E3F381E4616BF00142199 /* MapViewController.swift */,
+				D29E3F3A1E46191B00142199 /* InfoView.xib */,
+				D29E3F3C1E46192A00142199 /* InfoView.swift */,
 			);
 			path = HowMuch;
 			sourceTree = "<group>";
@@ -165,6 +174,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D29E3F3B1E46191B00142199 /* InfoView.xib in Resources */,
 				D2BDD3061E457A2D004ACC76 /* Assets.xcassets in Resources */,
 				D2BDD3041E457A2D004ACC76 /* Main.storyboard in Resources */,
 				D2BC59511E45872B00FE1ECC /* Launch.storyboard in Resources */,
@@ -229,6 +239,8 @@
 				D2BDD3011E457A2D004ACC76 /* ViewController.swift in Sources */,
 				D2BDD2FF1E457A2D004ACC76 /* AppDelegate.swift in Sources */,
 				D2BC594F1E457DCB00FE1ECC /* API.swift in Sources */,
+				D29E3F391E4616BF00142199 /* MapViewController.swift in Sources */,
+				D29E3F3D1E46192A00142199 /* InfoView.swift in Sources */,
 				D2BDD3121E457B8D004ACC76 /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
