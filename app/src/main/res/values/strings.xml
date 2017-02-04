@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">howmuch</string>
+    <string name="app_name">How Much?</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="facebook_app_id">1883429498560933</string>
+    <string name="fb_login_protocol_scheme">fb1883429498560933</string>
 </resources>
