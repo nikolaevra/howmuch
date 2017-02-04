@@ -8,9 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		77183D56EF233997E3982B97 /* Pods_HowMuch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C93A7241A97F54F20F7970BB /* Pods_HowMuch.framework */; };
+		D23867CE1E4625E200EEFFAC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D23867CD1E4625E200EEFFAC /* GoogleService-Info.plist */; };
+		D23867D01E4626EC00EEFFAC /* MyMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23867CF1E4626EC00EEFFAC /* MyMenuViewController.swift */; };
+		D23867D21E4627B700EEFFAC /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23867D11E4627B700EEFFAC /* FBSDKLoginKit.framework */; };
+		D23867D41E4627E000EEFFAC /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23867D31E4627E000EEFFAC /* FBSDKCoreKit.framework */; };
+		D23867D61E46298E00EEFFAC /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23867D51E46298E00EEFFAC /* UserViewController.swift */; };
+		D23867D81E462C4600EEFFAC /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23867D71E462C4600EEFFAC /* Bolts.framework */; };
+		D23A65351E465ED100E23314 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23A65341E465ED100E23314 /* TutorialViewController.swift */; };
+		D23A65401E46653F00E23314 /* Tutorial1.xib in Resources */ = {isa = PBXBuildFile; fileRef = D23A653F1E46653F00E23314 /* Tutorial1.xib */; };
+		D23A65421E46654900E23314 /* Tutorial1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23A65411E46654900E23314 /* Tutorial1.swift */; };
+		D23A65441E46666000E23314 /* Tutorial2.xib in Resources */ = {isa = PBXBuildFile; fileRef = D23A65431E46666000E23314 /* Tutorial2.xib */; };
+		D23A65461E46666800E23314 /* Tutorial3.xib in Resources */ = {isa = PBXBuildFile; fileRef = D23A65451E46666800E23314 /* Tutorial3.xib */; };
+		D23A65481E46669900E23314 /* Tutorial3.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23A65471E46669900E23314 /* Tutorial3.swift */; };
 		D29E3F391E4616BF00142199 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29E3F381E4616BF00142199 /* MapViewController.swift */; };
 		D29E3F3B1E46191B00142199 /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D29E3F3A1E46191B00142199 /* InfoView.xib */; };
 		D29E3F3D1E46192A00142199 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29E3F3C1E46192A00142199 /* InfoView.swift */; };
+		D29E3F3F1E4623CC00142199 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29E3F3E1E4623CC00142199 /* Color.swift */; };
 		D2BC594F1E457DCB00FE1ECC /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC594E1E457DCB00FE1ECC /* API.swift */; };
 		D2BC59511E45872B00FE1ECC /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BC59501E45872B00FE1ECC /* Launch.storyboard */; };
 		D2BDD2FF1E457A2D004ACC76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BDD2FE1E457A2D004ACC76 /* AppDelegate.swift */; };
@@ -23,9 +36,22 @@
 /* Begin PBXFileReference section */
 		6BC1AD3F3F20C108361B3BAA /* Pods-HowMuch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HowMuch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HowMuch/Pods-HowMuch.debug.xcconfig"; sourceTree = "<group>"; };
 		C93A7241A97F54F20F7970BB /* Pods_HowMuch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HowMuch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D23867CD1E4625E200EEFFAC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D23867CF1E4626EC00EEFFAC /* MyMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyMenuViewController.swift; path = ../MyMenuViewController.swift; sourceTree = "<group>"; };
+		D23867D11E4627B700EEFFAC /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		D23867D31E4627E000EEFFAC /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		D23867D51E46298E00EEFFAC /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		D23867D71E462C4600EEFFAC /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		D23A65341E465ED100E23314 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		D23A653F1E46653F00E23314 /* Tutorial1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Tutorial1.xib; sourceTree = "<group>"; };
+		D23A65411E46654900E23314 /* Tutorial1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tutorial1.swift; sourceTree = "<group>"; };
+		D23A65431E46666000E23314 /* Tutorial2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Tutorial2.xib; sourceTree = "<group>"; };
+		D23A65451E46666800E23314 /* Tutorial3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Tutorial3.xib; sourceTree = "<group>"; };
+		D23A65471E46669900E23314 /* Tutorial3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tutorial3.swift; sourceTree = "<group>"; };
 		D29E3F381E4616BF00142199 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D29E3F3A1E46191B00142199 /* InfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoView.xib; sourceTree = "<group>"; };
 		D29E3F3C1E46192A00142199 /* InfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		D29E3F3E1E4623CC00142199 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		D2BC594E1E457DCB00FE1ECC /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		D2BC59501E45872B00FE1ECC /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		D2BDD2FB1E457A2D004ACC76 /* HowMuch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HowMuch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,7 +69,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D23867D21E4627B700EEFFAC /* FBSDKLoginKit.framework in Frameworks */,
+				D23867D41E4627E000EEFFAC /* FBSDKCoreKit.framework in Frameworks */,
 				77183D56EF233997E3982B97 /* Pods_HowMuch.framework in Frameworks */,
+				D23867D81E462C4600EEFFAC /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +82,9 @@
 		57DA02BE8317D4E6B22B8EB5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D23867D71E462C4600EEFFAC /* Bolts.framework */,
+				D23867D31E4627E000EEFFAC /* FBSDKCoreKit.framework */,
+				D23867D11E4627B700EEFFAC /* FBSDKLoginKit.framework */,
 				C93A7241A97F54F20F7970BB /* Pods_HowMuch.framework */,
 			);
 			name = Frameworks;
@@ -65,6 +97,18 @@
 				E11A4BC7DBD032E549401309 /* Pods-HowMuch.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		D23A65361E46647000E23314 /* TutorialPage */ = {
+			isa = PBXGroup;
+			children = (
+				D23A653F1E46653F00E23314 /* Tutorial1.xib */,
+				D23A65471E46669900E23314 /* Tutorial3.swift */,
+				D23A65411E46654900E23314 /* Tutorial1.swift */,
+				D23A65431E46666000E23314 /* Tutorial2.xib */,
+				D23A65451E46666800E23314 /* Tutorial3.xib */,
+			);
+			name = TutorialPage;
 			sourceTree = "<group>";
 		};
 		D2BDD2F21E457A2D004ACC76 = {
@@ -88,16 +132,21 @@
 		D2BDD2FD1E457A2D004ACC76 /* HowMuch */ = {
 			isa = PBXGroup;
 			children = (
+				D23A65361E46647000E23314 /* TutorialPage */,
 				D2BDD3101E457B81004ACC76 /* Model */,
 				D2BDD2FE1E457A2D004ACC76 /* AppDelegate.swift */,
 				D2BDD3001E457A2D004ACC76 /* ViewController.swift */,
 				D2BDD3021E457A2D004ACC76 /* Main.storyboard */,
+				D23867CF1E4626EC00EEFFAC /* MyMenuViewController.swift */,
 				D2BDD3051E457A2D004ACC76 /* Assets.xcassets */,
 				D2BDD30A1E457A2D004ACC76 /* Info.plist */,
 				D2BC59501E45872B00FE1ECC /* Launch.storyboard */,
 				D29E3F381E4616BF00142199 /* MapViewController.swift */,
 				D29E3F3A1E46191B00142199 /* InfoView.xib */,
 				D29E3F3C1E46192A00142199 /* InfoView.swift */,
+				D23867CD1E4625E200EEFFAC /* GoogleService-Info.plist */,
+				D23867D51E46298E00EEFFAC /* UserViewController.swift */,
+				D23A65341E465ED100E23314 /* TutorialViewController.swift */,
 			);
 			path = HowMuch;
 			sourceTree = "<group>";
@@ -107,6 +156,7 @@
 			children = (
 				D2BDD3111E457B8D004ACC76 /* LocationManager.swift */,
 				D2BC594E1E457DCB00FE1ECC /* API.swift */,
+				D29E3F3E1E4623CC00142199 /* Color.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -175,7 +225,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D29E3F3B1E46191B00142199 /* InfoView.xib in Resources */,
+				D23A65401E46653F00E23314 /* Tutorial1.xib in Resources */,
+				D23A65441E46666000E23314 /* Tutorial2.xib in Resources */,
 				D2BDD3061E457A2D004ACC76 /* Assets.xcassets in Resources */,
+				D23867CE1E4625E200EEFFAC /* GoogleService-Info.plist in Resources */,
+				D23A65461E46666800E23314 /* Tutorial3.xib in Resources */,
 				D2BDD3041E457A2D004ACC76 /* Main.storyboard in Resources */,
 				D2BC59511E45872B00FE1ECC /* Launch.storyboard in Resources */,
 			);
@@ -237,11 +291,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2BDD3011E457A2D004ACC76 /* ViewController.swift in Sources */,
+				D23A65481E46669900E23314 /* Tutorial3.swift in Sources */,
+				D23867D61E46298E00EEFFAC /* UserViewController.swift in Sources */,
+				D23A65351E465ED100E23314 /* TutorialViewController.swift in Sources */,
 				D2BDD2FF1E457A2D004ACC76 /* AppDelegate.swift in Sources */,
+				D29E3F3F1E4623CC00142199 /* Color.swift in Sources */,
 				D2BC594F1E457DCB00FE1ECC /* API.swift in Sources */,
 				D29E3F391E4616BF00142199 /* MapViewController.swift in Sources */,
 				D29E3F3D1E46192A00142199 /* InfoView.swift in Sources */,
 				D2BDD3121E457B8D004ACC76 /* LocationManager.swift in Sources */,
+				D23867D01E4626EC00EEFFAC /* MyMenuViewController.swift in Sources */,
+				D23A65421E46654900E23314 /* Tutorial1.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +416,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VQJM9GW22Y;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = HowMuch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.groupname.howmuch.HowMuch;
@@ -370,6 +434,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VQJM9GW22Y;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = HowMuch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.groupname.howmuch.HowMuch;

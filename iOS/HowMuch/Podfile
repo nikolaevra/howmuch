@@ -9,5 +9,6 @@ target 'HowMuch' do
 pod 'AlamofireSwiftyJSON'
  pod 'GoogleMaps'
   pod 'GooglePlaces'
-
+pod 'Firebase/Auth'
+pod 'Firebase/Core'
 end

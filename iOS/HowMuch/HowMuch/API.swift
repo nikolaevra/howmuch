@@ -12,7 +12,6 @@ import Alamofire
 
 class API {
 	static let baseUrl = "http://138.197.132.178:5000/api/v1/"
-
 	static func getStores(with price:Double, lat: Double, lng: Double, complete:((JSON) -> Void)?){
 		let parameters = [
 			"price":"\(price)",
