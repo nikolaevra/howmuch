@@ -10,7 +10,7 @@ def getLocation():
     lon = request.form['lon']
     price = request.form['price']
 
-    return curl_request(lat, lon)
+    curl_request(lat, lon)
 
 def curl_request(lat, lon):
     headers = {
