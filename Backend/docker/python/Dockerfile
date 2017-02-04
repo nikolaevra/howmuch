@@ -1,5 +1,10 @@
-FROM python:2.7-alpine
+FROM ubuntu
 ADD ./code /code
 WORKDIR /code
+RUN apt-get update && apt-get install -y \
+    python3.5 \
+    python-pip \
+    python-dev \
+    build-essential
 RUN pip install -r requirements.txt
 CMD ["python", "project.py"]
