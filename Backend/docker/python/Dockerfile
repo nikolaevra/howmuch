@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:latest
 ADD ./code /code
 WORKDIR /code
 RUN apt-get update && apt-get install -y \
