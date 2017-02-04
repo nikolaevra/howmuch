@@ -24,7 +24,7 @@ def curl_request(lat, lon):
     try:
         r = requests.get(url, headers=headers)
         print(r)
-        return json.dumps(r)
+        return json.dumps(r.content)
     except URLError, e:
         return jsonify('No API!'), e
 
