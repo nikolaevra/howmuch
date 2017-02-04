@@ -7,8 +7,7 @@ def getLocation():
     lat = request.form['lat']
     lon = request.form['lon']
     price = request.form['price']
-    # print(lat + " " + lon + " " + price)
-
+    
     return jsonify(lat + " " + lon + " " + price)
 
 if __name__ == '__main__':
