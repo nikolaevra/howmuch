@@ -52,7 +52,7 @@ def parse_data_foursquare(restaurants, price):
                       '&client_secret=2DHASPBYJDCPPZJHU2AWGKSNHI141CBASPZ5F4LJN5QUNI4H'
                       '&v=20170204').format(id=restaurant_id)
         result['menu_items'] = json.loads(requests.get(menu_url).content)['response']['menu']
-        if formattedPhone restaurant['contact']:
+        if formattedPhone in restaurant['contact']:
             result['phone'] = restaurant['contact']['formattedPhone']
         if formattedAddress in restaurant['location']:
             result['address'] = restaurant['location']['formattedAddress']
