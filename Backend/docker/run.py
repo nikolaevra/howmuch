@@ -51,13 +51,29 @@ def parse_data_foursquare(restaurants, price):
                       'client_id=H2KDEDO03T5D5UZHSG24XXMVP3WST2GWIHPBO2RQIEREJ2OW'
                       '&client_secret=2DHASPBYJDCPPZJHU2AWGKSNHI141CBASPZ5F4LJN5QUNI4H'
                       '&v=20170204').format(id=restaurant_id)
-        result['menu_items'] = json.loads(requests.get(menu_url).content)['response']['menu']
+        menu_items_check = json.loads(requests.get(menu_url).content)['response']['menu']['menus']
+        menu_items = []
+        if menu_items_check['count'] != 0:
+            food_item = {}
+            for item in menu_items_check['items']:
+                if 'entries' in item:
+                    if item['entries']['count'] != 0:
+                        for value in item['entries']['items']:
+                            food_item['food_name'] = value['name']
+                            if 'price' in value:
+                                food_item['food_price'] = value['price']
+                            else
+                                food_item['food_price'] = 0
+                            if food_item['food_price'] <= price:
+                                menu_items.append(food_item)
+
         if 'formattedPhone' in restaurant['contact']:
             result['phone'] = restaurant['contact']['formattedPhone']
         if 'formattedAddress' in restaurant['location']:
             result['address'] = restaurant['location']['formattedAddress']
 
-        results.append(result)
+        if menu_items_check['count'] != 0:
+            results.append(result)
 
     return json.dumps({'data': results})
 
