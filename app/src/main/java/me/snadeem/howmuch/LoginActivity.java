@@ -196,6 +196,7 @@ public class LoginActivity extends AppCompatActivity {
         facebookName =  FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
         imageURL = FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString();
         startActivity(intent);
+        finish();
     }
 
     private boolean isLoggedIn() {

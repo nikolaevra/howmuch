@@ -12,7 +12,9 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -34,6 +36,7 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,20 +53,24 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.koushikdutta.ion.Ion;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.grantland.widget.AutofitTextView;
 
+import static java.lang.Double.parseDouble;
 import static me.snadeem.howmuch.LoginActivity.facebookName;
 import static me.snadeem.howmuch.LoginActivity.imageURL;
 import static me.snadeem.howmuch.R.id.amountEdit;
@@ -89,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private DrawerLayout androidDrawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private ValueAnimator vAnimator;
-    private FloatingActionButton redoFAB;
+    private ImageButton redoFAB;
     private GoogleApiClient mClient;
     private RecyclerView mRestaurantRecyclerView;
     private MyRestaurantRecyclerViewAdapter mAdapter;
@@ -108,14 +115,28 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
 
         FragmentManager fm = getSupportFragmentManager();
-        SupportMapFragment supportMapFragment = SupportMapFragment.newInstance();
+        WorkaroundMapFragment supportMapFragment = new WorkaroundMapFragment();
+
+        supportMapFragment.setListener((new WorkaroundMapFragment.OnTouchListener() {
+            @Override
+            public void onTouch() {
+                ((CoordinatorLayout) findViewById(R.id.rootCoordinatorLayout))
+                        .requestDisallowInterceptTouchEvent(true);
+
+                ((AppBarLayout) findViewById(R.id.rootAppBar))
+                        .requestDisallowInterceptTouchEvent(true);
+
+                ((CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar))
+                        .requestDisallowInterceptTouchEvent(true);
+            }
+        }));
         fm.beginTransaction().replace(R.id.mapContainer, supportMapFragment).commit();
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         supportMapFragment.getMapAsync(this);
 
         showHowMuchDialog();
 
-        redoFAB = (FloatingActionButton) findViewById(redoButton);
+        redoFAB = (ImageButton) findViewById(redoButton);
 
         redoFAB.setOnClickListener(view -> showHowMuchDialog());
 
@@ -153,11 +174,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         goButton.setOnClickListener(v -> {
             if (!editText.getText().toString().equals("")
-                    && Double.parseDouble(editText.getText().toString()) >= 0) {
+                    && parseDouble(editText.getText().toString()) >= 0) {
 
                 dialog.dismiss();
                 radiusInMetres = (seekBar.getProgress() + 1) * 1000;
-                Double price = Double.parseDouble(editText.getText().toString());
+                Double price = parseDouble(editText.getText().toString());
                 if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
                     //    ActivityCompat#requestPermissions
@@ -210,23 +231,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .setCallback((e, result) -> {
                     vAnimator.start();
                     dialog.dismiss();
-                    /*JsonArray dataArray = result.get("data").getAsJsonArray();
+                    JsonArray dataArray = result.get("data").getAsJsonArray();
 
                     for (int i = 0; i < dataArray.size(); ++i) {
+                        JsonObject obj = dataArray.get(i).getAsJsonObject();
                         Gson gson = new Gson();
-                        RestaurantModel curr = gson.fromJson(dataArray.get(i).getAsString(), RestaurantModel.class);
+                        RestaurantModel curr = gson.fromJson(obj.toString(), RestaurantModel.class);
                         curr.setDistanceToMyLocation(getDistanceToMyLocation(curr));
-                        restaurantsList.add(curr);
-                    }*/
-
-                    for (int i = 0; i < 3; i++) {
-                        RestaurantModel curr = new RestaurantModel();
-                        curr.setLat(String.valueOf(mLastLocation.getLatitude()));
-                        curr.setLon(String.valueOf(mLastLocation.getLongitude()));
-                        curr.setDistanceToMyLocation(getDistanceToMyLocation(curr));
-                        curr.setRestaurant_name("test");
                         restaurantsList.add(curr);
                     }
+
                     mAdapter.notifyDataSetChanged();
                     addMarkersToMap();
                     setZoomToCurrentRadius();
@@ -235,14 +249,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private double getDistanceToMyLocation(RestaurantModel curr) {
         Location loc1 = new Location("");
-        loc1.setLatitude(Double.parseDouble(curr.getLat()));
-        loc1.setLongitude(Double.parseDouble(curr.getLon()));
+        loc1.setLatitude(parseDouble(curr.getLat()));
+        loc1.setLongitude(parseDouble(curr.getLon()));
 
         Location loc2 = new Location("");
         loc2.setLatitude(mLastLocation.getLatitude());
         loc2.setLongitude(mLastLocation.getLongitude());
+        String doublestr = (new DecimalFormat("0.00")).format(Math.abs(loc1.distanceTo(loc2)) / 1000);
 
-        return Math.abs(loc1.distanceTo(loc2));
+        return Double.parseDouble(doublestr);
     }
 
     private void setZoomToCurrentRadius() {
@@ -264,7 +279,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         for (int i = 0; i < restaurantsList.size(); ++i) {
             RestaurantModel curr = restaurantsList.get(i);
             mMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(Double.parseDouble(curr.getLat()), Double.parseDouble(curr.getLon())))
+                    .position(new LatLng(parseDouble(curr.getLat()), parseDouble(curr.getLon())))
                     .title(curr.getRestaurant_name()));
         }
     }
@@ -288,7 +303,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void initializeDrawer() {
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("How Much Hub");
@@ -603,5 +617,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         }
         return false;
+    }
+
+    @Override
+    public void onItemClick(RestaurantModel model) {
+        View view = findViewById(R.id.menuLayout);
+        AlertDialog dialog = new AlertDialog.Builder(this).create();
+        dialog.setView(dialogView);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.setCancelable(false);
+        dialog.show();
     }
 }

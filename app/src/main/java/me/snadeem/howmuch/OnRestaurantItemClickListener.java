@@ -5,4 +5,5 @@ package me.snadeem.howmuch;
  */
 
 public interface OnRestaurantItemClickListener {
+    void onItemClick(RestaurantModel model);
 }

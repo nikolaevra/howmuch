@@ -36,17 +36,14 @@ public class MyHistoryRecyclerViewAdapter extends RecyclerView.Adapter<MyHistory
         HistoryModel currentModel = mValues.get(position);
         holder.restaurantNameText.setText(currentModel.getRestaurantName());
         holder.moneySpentText.setText(currentModel.getMoneySpent());
-        /*holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
+/*        holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.onHistoryItemClick(holder.mItem);
+                    mListener.onHistoryItemClick(holder.m);
                 }
             }
         });*/
