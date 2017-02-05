@@ -20,9 +20,8 @@ extension ViewController: UITextFieldDelegate {
 class ViewController: UIViewController {
 
 	@IBAction func didTabGo(_ sender: UIButton) {
-		API.getStores(with: Double(userInput.text!)!, lat: LocationManager.getLat(), lng: LocationManager.getLng()) { (response) in
-			print("response received")
-		}
+		UserDefaults.standard.set(Double(self.userInput.text!
+		), forKey: "userPrice")
 	}
 	@IBOutlet weak var howMuchLabel: UIButton!
 	@IBOutlet weak var userInput: UITextField!
@@ -36,9 +35,8 @@ class ViewController: UIViewController {
 		UIView.animate(withDuration: 1.0) { 
 			self.howMuchLabel.alpha = 1.0
 			self.userInput.alpha = 1.0
-
-
 		}
+		
 	}
 	override func viewDidLoad() {
 		super.viewDidLoad()

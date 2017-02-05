@@ -37,9 +37,12 @@ class TutorialViewController: UIViewController, UIScrollViewDelegate {
 		startButton.alpha = 0.0
 		scrollView.showsHorizontalScrollIndicator = false
 
-
+		let views = [
+		Tutorial1.instanceFromNib(),
+		Tutorial1.instanceFromNib2(),
+		Tutorial1.instanceFromNib3()]
 		for i in 0...2 {
-			let view = Tutorial1.instanceFromNib()
+			let view = views[i]
 			view.frame = CGRect(x: self.view.frame.width * CGFloat(i), y: 0.0, width: self.view.frame.width, height: self.view.frame.height)
 			scrollView.addSubview(view)
 		}

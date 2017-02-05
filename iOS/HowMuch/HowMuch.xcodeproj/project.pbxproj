@@ -20,6 +20,17 @@
 		D23A65441E46666000E23314 /* Tutorial2.xib in Resources */ = {isa = PBXBuildFile; fileRef = D23A65431E46666000E23314 /* Tutorial2.xib */; };
 		D23A65461E46666800E23314 /* Tutorial3.xib in Resources */ = {isa = PBXBuildFile; fileRef = D23A65451E46666800E23314 /* Tutorial3.xib */; };
 		D23A65481E46669900E23314 /* Tutorial3.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23A65471E46669900E23314 /* Tutorial3.swift */; };
+		D23A654B1E46729700E23314 /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23A654A1E46729700E23314 /* RestaurantTableViewCell.swift */; };
+		D23A654D1E46775700E23314 /* ActivitiyIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23A654C1E46775700E23314 /* ActivitiyIndicator.swift */; };
+		D25D6F5D1E467C2800D3358A /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25D6F5B1E467C2800D3358A /* MenuTableViewCell.swift */; };
+		D25D6F5E1E467C2800D3358A /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25D6F5C1E467C2800D3358A /* MenuTableViewCell.xib */; };
+		D25D6F601E46831200D3358A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25D6F5F1E46831200D3358A /* Extensions.swift */; };
+		D25D6F621E46912500D3358A /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25D6F611E46912500D3358A /* Restaurant.swift */; };
+		D25D6F641E46929300D3358A /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25D6F631E46929300D3358A /* Menu.swift */; };
+		D25D6F661E46949900D3358A /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25D6F651E46949900D3358A /* History.swift */; };
+		D25D6F691E46A38600D3358A /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25D6F671E46A38600D3358A /* HistoryTableViewCell.swift */; };
+		D25D6F6A1E46A38600D3358A /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D25D6F681E46A38600D3358A /* HistoryTableViewCell.xib */; };
+		D25D6F6C1E46D3B600D3358A /* JGAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25D6F6B1E46D3B600D3358A /* JGAlert.swift */; };
 		D29E3F391E4616BF00142199 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29E3F381E4616BF00142199 /* MapViewController.swift */; };
 		D29E3F3B1E46191B00142199 /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D29E3F3A1E46191B00142199 /* InfoView.xib */; };
 		D29E3F3D1E46192A00142199 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29E3F3C1E46192A00142199 /* InfoView.swift */; };
@@ -48,6 +59,17 @@
 		D23A65431E46666000E23314 /* Tutorial2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Tutorial2.xib; sourceTree = "<group>"; };
 		D23A65451E46666800E23314 /* Tutorial3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Tutorial3.xib; sourceTree = "<group>"; };
 		D23A65471E46669900E23314 /* Tutorial3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tutorial3.swift; sourceTree = "<group>"; };
+		D23A654A1E46729700E23314 /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
+		D23A654C1E46775700E23314 /* ActivitiyIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitiyIndicator.swift; sourceTree = "<group>"; };
+		D25D6F5B1E467C2800D3358A /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		D25D6F5C1E467C2800D3358A /* MenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
+		D25D6F5F1E46831200D3358A /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		D25D6F611E46912500D3358A /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		D25D6F631E46929300D3358A /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		D25D6F651E46949900D3358A /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
+		D25D6F671E46A38600D3358A /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		D25D6F681E46A38600D3358A /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
+		D25D6F6B1E46D3B600D3358A /* JGAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JGAlert.swift; sourceTree = "<group>"; };
 		D29E3F381E4616BF00142199 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D29E3F3A1E46191B00142199 /* InfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoView.xib; sourceTree = "<group>"; };
 		D29E3F3C1E46192A00142199 /* InfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
@@ -111,6 +133,18 @@
 			name = TutorialPage;
 			sourceTree = "<group>";
 		};
+		D23A65491E46728B00E23314 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D23A654A1E46729700E23314 /* RestaurantTableViewCell.swift */,
+				D25D6F5B1E467C2800D3358A /* MenuTableViewCell.swift */,
+				D25D6F5C1E467C2800D3358A /* MenuTableViewCell.xib */,
+				D25D6F671E46A38600D3358A /* HistoryTableViewCell.swift */,
+				D25D6F681E46A38600D3358A /* HistoryTableViewCell.xib */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
 		D2BDD2F21E457A2D004ACC76 = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +166,7 @@
 		D2BDD2FD1E457A2D004ACC76 /* HowMuch */ = {
 			isa = PBXGroup;
 			children = (
+				D23A65491E46728B00E23314 /* Cell */,
 				D23A65361E46647000E23314 /* TutorialPage */,
 				D2BDD3101E457B81004ACC76 /* Model */,
 				D2BDD2FE1E457A2D004ACC76 /* AppDelegate.swift */,
@@ -147,6 +182,9 @@
 				D23867CD1E4625E200EEFFAC /* GoogleService-Info.plist */,
 				D23867D51E46298E00EEFFAC /* UserViewController.swift */,
 				D23A65341E465ED100E23314 /* TutorialViewController.swift */,
+				D23A654C1E46775700E23314 /* ActivitiyIndicator.swift */,
+				D25D6F5F1E46831200D3358A /* Extensions.swift */,
+				D25D6F6B1E46D3B600D3358A /* JGAlert.swift */,
 			);
 			path = HowMuch;
 			sourceTree = "<group>";
@@ -157,6 +195,9 @@
 				D2BDD3111E457B8D004ACC76 /* LocationManager.swift */,
 				D2BC594E1E457DCB00FE1ECC /* API.swift */,
 				D29E3F3E1E4623CC00142199 /* Color.swift */,
+				D25D6F611E46912500D3358A /* Restaurant.swift */,
+				D25D6F631E46929300D3358A /* Menu.swift */,
+				D25D6F651E46949900D3358A /* History.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -224,11 +265,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D25D6F5E1E467C2800D3358A /* MenuTableViewCell.xib in Resources */,
 				D29E3F3B1E46191B00142199 /* InfoView.xib in Resources */,
 				D23A65401E46653F00E23314 /* Tutorial1.xib in Resources */,
 				D23A65441E46666000E23314 /* Tutorial2.xib in Resources */,
 				D2BDD3061E457A2D004ACC76 /* Assets.xcassets in Resources */,
 				D23867CE1E4625E200EEFFAC /* GoogleService-Info.plist in Resources */,
+				D25D6F6A1E46A38600D3358A /* HistoryTableViewCell.xib in Resources */,
 				D23A65461E46666800E23314 /* Tutorial3.xib in Resources */,
 				D2BDD3041E457A2D004ACC76 /* Main.storyboard in Resources */,
 				D2BC59511E45872B00FE1ECC /* Launch.storyboard in Resources */,
@@ -292,16 +335,25 @@
 			files = (
 				D2BDD3011E457A2D004ACC76 /* ViewController.swift in Sources */,
 				D23A65481E46669900E23314 /* Tutorial3.swift in Sources */,
+				D25D6F661E46949900D3358A /* History.swift in Sources */,
 				D23867D61E46298E00EEFFAC /* UserViewController.swift in Sources */,
 				D23A65351E465ED100E23314 /* TutorialViewController.swift in Sources */,
+				D23A654D1E46775700E23314 /* ActivitiyIndicator.swift in Sources */,
 				D2BDD2FF1E457A2D004ACC76 /* AppDelegate.swift in Sources */,
+				D25D6F641E46929300D3358A /* Menu.swift in Sources */,
 				D29E3F3F1E4623CC00142199 /* Color.swift in Sources */,
 				D2BC594F1E457DCB00FE1ECC /* API.swift in Sources */,
 				D29E3F391E4616BF00142199 /* MapViewController.swift in Sources */,
 				D29E3F3D1E46192A00142199 /* InfoView.swift in Sources */,
 				D2BDD3121E457B8D004ACC76 /* LocationManager.swift in Sources */,
+				D25D6F601E46831200D3358A /* Extensions.swift in Sources */,
+				D25D6F691E46A38600D3358A /* HistoryTableViewCell.swift in Sources */,
 				D23867D01E4626EC00EEFFAC /* MyMenuViewController.swift in Sources */,
+				D25D6F6C1E46D3B600D3358A /* JGAlert.swift in Sources */,
+				D23A654B1E46729700E23314 /* RestaurantTableViewCell.swift in Sources */,
+				D25D6F621E46912500D3358A /* Restaurant.swift in Sources */,
 				D23A65421E46654900E23314 /* Tutorial1.swift in Sources */,
+				D25D6F5D1E467C2800D3358A /* MenuTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

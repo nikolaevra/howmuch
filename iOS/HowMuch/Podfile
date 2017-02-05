@@ -11,4 +11,5 @@ pod 'AlamofireSwiftyJSON'
   pod 'GooglePlaces'
 pod 'Firebase/Auth'
 pod 'Firebase/Core'
+pod 'Firebase/Database'
 end

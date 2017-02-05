@@ -19,9 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
+		FIRApp.configure()
+		FIRDatabase.database().persistenceEnabled = true
 		GMSServices.provideAPIKey("AIzaSyDyW0NAiD2v0a6t3tVDgV4CQXWM1sojWl8")
 		FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-		FIRApp.configure()
+
 
 		return true
 	}

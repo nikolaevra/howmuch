@@ -18,7 +18,7 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food" translatesAutoresizingMaskIntoConstraints="NO" id="a4o-SV-iw1">
                     <rect key="frame" x="11" y="7" width="80" height="80"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name Of Menu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BbL-aq-tvo">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Big Festival of Shrimp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BbL-aq-tvo">
                     <rect key="frame" x="99" y="7" width="204" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="jNI-gr-l8b"/>
@@ -27,8 +27,8 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of restaurant" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDa-3i-kZr">
-                    <rect key="frame" x="99" y="63" width="220" height="24"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Red Lobster" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDa-3i-kZr">
+                    <rect key="frame" x="99" y="63" width="204" height="24"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="24" id="gky-sc-WkX"/>
                     </constraints>
@@ -129,7 +129,7 @@
                 <constraint firstItem="xRq-mY-Uke" firstAttribute="leading" secondItem="cqo-ss-cBY" secondAttribute="trailing" constant="8" id="dgO-4I-gwa"/>
                 <constraint firstItem="2wI-7O-SVT" firstAttribute="leading" secondItem="S1l-rs-ItL" secondAttribute="leading" id="dlO-ii-CTG"/>
                 <constraint firstItem="k7m-sV-TCx" firstAttribute="top" secondItem="Atv-iQ-pyE" secondAttribute="bottom" constant="20" id="f2c-wN-W4T"/>
-                <constraint firstAttribute="trailing" secondItem="XDa-3i-kZr" secondAttribute="trailing" id="hxg-vw-D9z"/>
+                <constraint firstAttribute="trailing" secondItem="XDa-3i-kZr" secondAttribute="trailing" constant="16" id="hxg-vw-D9z"/>
                 <constraint firstItem="LsR-b7-j6h" firstAttribute="centerY" secondItem="k7m-sV-TCx" secondAttribute="centerY" id="kfJ-7a-TaY"/>
                 <constraint firstItem="BbL-aq-tvo" firstAttribute="leading" secondItem="cqo-ss-cBY" secondAttribute="leading" id="mis-qa-Zfe"/>
                 <constraint firstItem="Atv-iQ-pyE" firstAttribute="top" secondItem="a4o-SV-iw1" secondAttribute="bottom" constant="5" id="nEa-yv-6Mf"/>
@@ -151,6 +151,15 @@
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="address" destination="Atv-iQ-pyE" id="YfB-64-5Rg"/>
+                <outlet property="foodImage" destination="a4o-SV-iw1" id="fZR-vi-Zwl"/>
+                <outlet property="foodPrice" destination="cqo-ss-cBY" id="otk-90-8Xj"/>
+                <outlet property="menuName" destination="BbL-aq-tvo" id="DHC-qm-gZs"/>
+                <outlet property="phoneNumber" destination="Olv-mn-dFU" id="ykB-6a-Ayp"/>
+                <outlet property="restName" destination="XDa-3i-kZr" id="RYk-gC-eZS"/>
+                <outlet property="time" destination="k7m-sV-TCx" id="kkQ-Fb-yz4"/>
+            </connections>
             <point key="canvasLocation" x="-3.5" y="245.5"/>
         </view>
     </objects>

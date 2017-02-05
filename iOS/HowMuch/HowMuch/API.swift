@@ -11,16 +11,18 @@ import Foundation
 import Alamofire
 
 class API {
-	static let baseUrl = "http://138.197.132.178:5000/api/v1/"
+	static let baseUrl = "http://138.197.132.178/"
+	
 	static func getStores(with price:Double, lat: Double, lng: Double, complete:((JSON) -> Void)?){
 		let parameters = [
 			"price":"\(price)",
 			"lat":"\(lat)",
-			"lng":"\(lng)"
+			"lon":"\(lng)",
+			"radius":"5000"
 		]
+		Alamofire.request(baseUrl + "get-location", method: .post, parameters: parameters).responseJSON { (response) in
+			complete!(JSON(response.result.value!))
 
-		Alamofire.request(baseUrl + "my_price", method: .get, parameters: parameters).responseJSON { (response) in
-			print(response)
 		}
 	}
 }
