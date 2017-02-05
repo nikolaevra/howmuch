@@ -59,14 +59,12 @@ public class MyHistoryRecyclerViewAdapter extends RecyclerView.Adapter<MyHistory
         public final View mView;
         public final TextView restaurantNameText;
         public final TextView moneySpentText;
-        public final TextView typeText;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
             restaurantNameText = (TextView) view.findViewById(R.id.restaurantName);
             moneySpentText = (TextView) view.findViewById(R.id.moneySpentText);
-            typeText = (TextView) view.findViewById(R.id.restaurantType);
         }
 
         @Override

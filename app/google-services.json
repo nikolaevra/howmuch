@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "557113248079",
+    "firebase_url": "https://qhacks-fb832.firebaseio.com",
+    "project_id": "qhacks-fb832",
+    "storage_bucket": "qhacks-fb832.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:557113248079:android:80b5def663a0d389",
+        "android_client_info": {
+          "package_name": "me.snadeem.howmuch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "557113248079-4o6q8b6p04iv84qfrr44lohjtektd17r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbQRvHENDYAf_FR4bhWqeyJO63K1JExp8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "557113248079-4o6q8b6p04iv84qfrr44lohjtektd17r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

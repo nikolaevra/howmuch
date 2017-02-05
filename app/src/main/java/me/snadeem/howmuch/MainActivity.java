@@ -12,6 +12,7 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
@@ -41,6 +42,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -59,6 +62,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -66,6 +71,7 @@ import com.koushikdutta.ion.Ion;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.grantland.widget.AutofitTextView;
@@ -281,7 +287,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             RestaurantModel curr = restaurantsList.get(i);
             mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(parseDouble(curr.getLat()), parseDouble(curr.getLon())))
-                    .title(curr.getRestaurant_name()));
+                    .title(curr.getRestaurant_name()).snippet(curr.getPhone()));
         }
     }
 
@@ -622,12 +628,56 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onItemClick(RestaurantModel model) {
-        View view = findViewById(R.id.menuRoot);
+
+
+        MaterialDialog dialog = new MaterialDialog.Builder(this)
+                .title("What would you like to do?")
+                .positiveText("See Menu")
+                .neutralText("Cancel")
+                .negativeText("Log Visit")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        displayMenu(model);
+                        dialog.dismiss();
+                    }
+                })
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        dialog.dismiss();
+                    }
+                })
+                .onNeutral(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        logHistoryToFirebase(model);
+                        dialog.dismiss();
+                    }
+                })
+                .show();
+    }
+
+
+    private void logHistoryToFirebase(RestaurantModel model) {
+        DatabaseReference root = FirebaseDatabase.getInstance().getReference().getRoot().
+                child("history").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(UUID.randomUUID().toString());
+        root.child("timestamp").setValue(System.currentTimeMillis());
+        root.child("restaurantName").setValue(model.getRestaurant_name());
+        root.child("lat").setValue(model.getLat());
+        root.child("lng").setValue(model.getLon());
+        root.child("fullness").setValue(0);
+        root.child("moneySpent").setValue(0);
+
+        Toast.makeText(this, "Your trip to "+model.getRestaurant_name()+" has been successfully logged!", Toast.LENGTH_LONG).show();
+    }
+
+    private void displayMenu(RestaurantModel model) {
+        View view = getLayoutInflater().inflate(R.layout.menu_layout, null);
 
         RecyclerView menuList = (RecyclerView) view.findViewById(R.id.menuList);
         MenuAdapter adapter = new me.snadeem.howmuch.MenuAdapter(model.getMenu_items());
         menuList.setAdapter(adapter);
-
 
         menuList.setLayoutManager(new LinearLayoutManager(this));
         menuList.setAdapter(adapter);
@@ -635,8 +685,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 DividerItemDecoration.VERTICAL));
         adapter.notifyDataSetChanged();
 
-        TextView menuHeader = (TextView) view.findViewById(R.id.menuHeader);
-        menuHeader.setText("For $" + price + ", you can get the following from " + model.getRestaurant_name());
+        AutofitTextView menuHeader = (AutofitTextView) view.findViewById(R.id.menuHeader);
+        menuHeader.setText("For $" + price + ", this is what " + model.getRestaurant_name() + " has to offer");
         AlertDialog dialog = new AlertDialog.Builder(this).create();
         dialog.setView(view);
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;

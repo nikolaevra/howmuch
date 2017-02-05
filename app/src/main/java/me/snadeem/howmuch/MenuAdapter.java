@@ -24,7 +24,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.history_item, parent, false);
+                .inflate(R.layout.menu_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -32,7 +32,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     public void onBindViewHolder(final ViewHolder holder, int position) {
         MenuItemModel model = mValues.get(position);
         holder.foodName.setText(model.getFood_name());
-        holder.foodPrice.setText((new DecimalFormat("0.00")).format(model.getFood_price()));
+        holder.foodPrice.setText((new DecimalFormat("0.00")).format(Double.parseDouble(model.getFood_price())));
     }
 
     @Override
