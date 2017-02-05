@@ -90,7 +90,7 @@ def curl_request(lat, lon, radius, price):
         zomato_data = parse_data_zomato(zomato_dict, price)
         foursquare_data = parse_data_foursquare(foursquare_dict, price)
 
-        return zomato_data
+        return foursquare_data
     except URLError, e:
         return jsonify('No API!'), e
 
