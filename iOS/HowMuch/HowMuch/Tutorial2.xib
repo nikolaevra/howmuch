@@ -19,8 +19,8 @@
                     <rect key="frame" x="38" y="227" width="298" height="440"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PvQ-SG-Jb5">
-                    <rect key="frame" x="38" y="60" width="298" height="128"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Sync your meal history using simple FB login and never lose the records" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PvQ-SG-Jb5">
+                    <rect key="frame" x="38" y="60" width="298" height="141"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="26"/>

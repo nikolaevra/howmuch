@@ -19,7 +19,7 @@
                     <rect key="frame" x="38" y="227" width="298" height="440"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Gaz-J5-zDX">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Long press the location to make new search" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Gaz-J5-zDX">
                     <rect key="frame" x="38" y="60" width="298" height="128"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
