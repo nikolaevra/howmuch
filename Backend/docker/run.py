@@ -64,7 +64,8 @@ def parse_data_foursquare(restaurants, price):
                             if 'price' in value:
                                 food_item['food_price'] = value['price']
                             else:
-                                food_item['food_price'] = randint(5,15)
+                                random_price = randint(5,15)
+                                food_item['food_price'] = calculate_tips(calculate_tax(random_price))
 
                             if food_item['food_price'] <= price:
                                 menu_items.append(food_item)
@@ -81,6 +82,13 @@ def parse_data_foursquare(restaurants, price):
 
     return json.dumps({'data': results})
 
+def calculate_tax(price):
+    taxed_price = price * 1.13
+    return taxed_price
+
+def calculate_tips(price):
+    tipped_price = price * 1.15
+    return tipped_price
 
 def curl_request(lat, lon, radius, price):
     zomato_headers = {
