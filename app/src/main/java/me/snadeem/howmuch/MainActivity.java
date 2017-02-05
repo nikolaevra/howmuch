@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private GoogleApiClient mClient;
     private RecyclerView mRestaurantRecyclerView;
     private MyRestaurantRecyclerViewAdapter mAdapter;
+    private double price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                 dialog.dismiss();
                 radiusInMetres = (seekBar.getProgress() + 1) * 1000;
-                Double price = parseDouble(editText.getText().toString());
+                price = parseDouble(editText.getText().toString());
                 if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
                     //    ActivityCompat#requestPermissions
@@ -621,11 +622,32 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onItemClick(RestaurantModel model) {
-        View view = findViewById(R.id.menuLayout);
+        View view = findViewById(R.id.menuRoot);
+
+        RecyclerView menuList = (RecyclerView) view.findViewById(R.id.menuList);
+        MenuAdapter adapter = new me.snadeem.howmuch.MenuAdapter(model.getMenu_items());
+        menuList.setAdapter(adapter);
+
+
+        menuList.setLayoutManager(new LinearLayoutManager(this));
+        menuList.setAdapter(adapter);
+        mRestaurantRecyclerView.addItemDecoration(new DividerItemDecoration(this,
+                DividerItemDecoration.VERTICAL));
+        adapter.notifyDataSetChanged();
+
+        TextView menuHeader = (TextView) view.findViewById(R.id.menuHeader);
+        menuHeader.setText("For $" + price + ", you can get the following from " + model.getRestaurant_name());
         AlertDialog dialog = new AlertDialog.Builder(this).create();
-        dialog.setView(dialogView);
+        dialog.setView(view);
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
-        dialog.setCancelable(false);
+        dialog.setCancelable(true);
         dialog.show();
+
+        (view.findViewById(R.id.menuDoneButton)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
     }
 }
