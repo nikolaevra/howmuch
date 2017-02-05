@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import json
 import requests
 from urllib2 import URLError
+from random import randint
 
 app = Flask(__name__)
 
@@ -63,7 +64,7 @@ def parse_data_foursquare(restaurants, price):
                             if 'price' in value:
                                 food_item['food_price'] = value['price']
                             else:
-                                food_item['food_price'] = 0
+                                food_item['food_price'] = randint(5,15)
 
                             if food_item['food_price'] <= price:
                                 menu_items.append(food_item)
