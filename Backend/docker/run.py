@@ -64,8 +64,8 @@ def parse_data_foursquare(restaurants, price):
                                 food_item['food_price'] = value['price']
                             else:
                                 food_item['food_price'] = 0
-                            if food_item['food_price'] <= price:
-                                menu_items.append(food_item)
+                        if food_item['food_price'] <= price:
+                            menu_items.append(food_item)
 
         result['menu_items'] = menu_items
 
