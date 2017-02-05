@@ -8,15 +8,52 @@
 
 import UIKit
 
+extension ViewController: UITextFieldDelegate {
+	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+
+		UIView.animate(withDuration: 1.0) {
+			self.goButton.alpha = 1.0
+		}
+		return true
+	}
+}
 class ViewController: UIViewController {
 
+	@IBAction func didTabGo(_ sender: UIButton) {
+		UserDefaults.standard.set(Double(self.userInput.text!
+		), forKey: "userPrice")
+	}
+	@IBOutlet weak var howMuchLabel: UIButton!
+	@IBOutlet weak var userInput: UITextField!
+
+	@IBOutlet weak var goButton: UIButton!
+
+
+
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		UIView.animate(withDuration: 1.0) { 
+			self.howMuchLabel.alpha = 1.0
+			self.userInput.alpha = 1.0
+		}
+		
+	}
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		print(LocationManager.getCoordinate(type: .Lat))
-		print(LocationManager.getCoordinate(type: .Lng))
+		userInput.delegate = self
+		userInput.becomeFirstResponder()
+		howMuchLabel.alpha = 0.0
+		userInput.alpha = 0.0
+		goButton.alpha = 0.0
 
 		// Do any additional setup after loading the view, typically from a nib.
 	}
+//
+//	override func viewWillDisappear(_ animated: Bool) {
+//		super.viewWillDisappear(animated)
+//		let view = UIView(frame: self.view.frame)
+//		view.backgroundColor = UIColor.lightGray
+//	}
 
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
