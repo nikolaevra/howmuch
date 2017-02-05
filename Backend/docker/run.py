@@ -54,18 +54,19 @@ def parse_data_foursquare(restaurants, price):
         menu_items_check = json.loads(requests.get(menu_url).content)['response']['menu']['menus']
         menu_items = []
         if menu_items_check['count'] != 0:
-            food_item = {}
             for item in menu_items_check['items']:
                 if 'entries' in item:
                     if item['entries']['count'] != 0:
                         for value in item['entries']['items']:
+                            food_item = {}
                             food_item['food_name'] = value['name']
                             if 'price' in value:
                                 food_item['food_price'] = value['price']
                             else:
                                 food_item['food_price'] = 0
-                        if food_item['food_price'] <= price:
-                            menu_items.append(food_item)
+
+                            if food_item['food_price'] <= price:
+                                menu_items.append(food_item)
 
         result['menu_items'] = menu_items
 
