@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -91,7 +92,7 @@ public class HistoryFragment extends Fragment implements OnHistoryItemClickListe
     private void retrieveHistoryFromServer() {
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         DatabaseReference testHistory
-                = mDatabase.child("history").child("CjB8RBwhaydsah3WtKxbQXzcwGF3").orderByChild("timestamp").getRef();
+                = mDatabase.child("history").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).orderByChild("timestamp").getRef();
 
         testHistory.addValueEventListener(new ValueEventListener() {
             @Override

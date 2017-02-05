@@ -91,11 +91,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     public static Location mLastLocation;
+    public static RecyclerView mRestaurantRecyclerView;
     GoogleApiClient mGoogleApiClient;
     Marker mCurrLocationMarker;
     LocationRequest mLocationRequest;
     ArrayList<RestaurantModel> restaurantsList;
-
     int radiusInMetres = 1000;
     boolean firstLoad = true;
     private GoogleMap mMap;
@@ -104,7 +104,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private ValueAnimator vAnimator;
     private ImageButton redoFAB;
     private GoogleApiClient mClient;
-    private RecyclerView mRestaurantRecyclerView;
     private MyRestaurantRecyclerViewAdapter mAdapter;
     private double price;
 
@@ -382,6 +381,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 ft.commit();
 
                 redoFAB.setVisibility(View.GONE);
+                mRestaurantRecyclerView.setVisibility(View.GONE);
 
                 // Highlight the selected item has been done by NavigationView
                 menuItem.setChecked(true);
@@ -410,7 +410,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        if (hasFocus && redoFAB != null) redoFAB.setVisibility(View.VISIBLE);
+        if (hasFocus && redoFAB != null) {
+            redoFAB.setVisibility(View.VISIBLE);
+            mRestaurantRecyclerView.setVisibility(View.VISIBLE);
+        }
     }
 
     /**
@@ -669,7 +672,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         root.child("fullness").setValue(0);
         root.child("moneySpent").setValue(0);
 
-        Toast.makeText(this, "Your trip to "+model.getRestaurant_name()+" has been successfully logged!", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Your trip to " + model.getRestaurant_name() + " has been successfully logged!", Toast.LENGTH_LONG).show();
     }
 
     private void displayMenu(RestaurantModel model) {

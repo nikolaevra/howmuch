@@ -84,6 +84,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         Button skipButton = (Button) findViewById(R.id.skipLoginButton);
+        skipButton.setVisibility(View.GONE);
 
         skipButton.setOnClickListener(view -> {
             prefs.edit().putBoolean(KEY_SKIP_LOGIN, true).apply();
