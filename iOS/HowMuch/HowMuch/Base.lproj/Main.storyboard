@@ -33,15 +33,16 @@
                                     <constraint firstAttribute="width" constant="375" id="rSM-Rs-BRf"/>
                                 </constraints>
                             </pageControl>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EWR-tz-bt4">
-                                <rect key="frame" x="140" y="492" width="95" height="48"/>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EWR-tz-bt4">
+                                <rect key="frame" x="0.0" y="492" width="375" height="48"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="CZV-95-dPx"/>
-                                    <constraint firstAttribute="width" constant="95" id="x6a-Fp-8EB"/>
+                                    <constraint firstAttribute="width" constant="375" id="x6a-Fp-8EB"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                 <state key="normal" title="START">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" id="gb3-jU-GGc"/>
@@ -177,37 +178,37 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of Rest" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M6d-XB-ryW">
-                                                    <rect key="frame" x="99" y="8" width="268" height="21"/>
+                                                    <rect key="frame" x="99" y="8" width="268" height="24"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(416) 868 - 1234" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zr3-57-lIu">
-                                                    <rect key="frame" x="122" y="49" width="245" height="21"/>
+                                                    <rect key="frame" x="122" y="52" width="245" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address of store" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7eC-4E-cyE">
-                                                    <rect key="frame" x="122" y="29" width="245" height="21"/>
+                                                    <rect key="frame" x="122" y="32" width="245" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location" translatesAutoresizingMaskIntoConstraints="NO" id="eGY-3I-8nC">
-                                                    <rect key="frame" x="99" y="32" width="15" height="15"/>
+                                                    <rect key="frame" x="99" y="35" width="15" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="15" id="anR-KP-FcG"/>
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone" translatesAutoresizingMaskIntoConstraints="NO" id="1qj-zG-xUS">
-                                                    <rect key="frame" x="99" y="52" width="15" height="15"/>
+                                                    <rect key="frame" x="99" y="55" width="15" height="15"/>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="time" translatesAutoresizingMaskIntoConstraints="NO" id="lEx-yS-PRK">
-                                                    <rect key="frame" x="99" y="73" width="15" height="15"/>
+                                                    <rect key="frame" x="99" y="76" width="15" height="12"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 AM - 10 PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zwd-Xj-tBV">
-                                                    <rect key="frame" x="122" y="70" width="245" height="21"/>
+                                                    <rect key="frame" x="122" y="73" width="245" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -389,11 +390,11 @@
     </scenes>
     <resources>
         <image name="food" width="1320" height="732"/>
-        <image name="location" width="16" height="16"/>
-        <image name="my" width="32" height="32"/>
-        <image name="phone" width="16" height="16"/>
-        <image name="rest" width="32" height="32"/>
-        <image name="time" width="16" height="16"/>
+        <image name="location" width="12" height="12"/>
+        <image name="my" width="16" height="16"/>
+        <image name="phone" width="12" height="12"/>
+        <image name="rest" width="16" height="16"/>
+        <image name="time" width="12" height="12"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="gb3-jU-GGc"/>

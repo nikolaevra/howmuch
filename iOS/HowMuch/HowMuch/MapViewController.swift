@@ -84,7 +84,7 @@ tableView.tableFooterView = UIView()
 			ActivityIndicator.shareInstance.hideIndicator()
 		}
 
-		let camera = GMSCameraPosition.camera(withLatitude: LocationManager.getLat(), longitude: LocationManager.getLng(), zoom: 13.0)
+		let camera = GMSCameraPosition.camera(withLatitude: LocationManager.getLat(), longitude: LocationManager.getLng(), zoom: 11.0)
 		let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
 		mapView.isMyLocationEnabled = true
 		mapView.delegate = self
@@ -190,7 +190,7 @@ extension MapViewController: GMSMapViewDelegate {
 			ActivityIndicator.shareInstance.hideIndicator()
 		}
 
-		let camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude, longitude: coordinate.longitude, zoom: 14.0)
+		let camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude, longitude: coordinate.longitude, zoom: 11.0)
 		mapView.animate(to: camera)
 		if(userselectionMarker != nil){
 			userselectionMarker.map = nil
