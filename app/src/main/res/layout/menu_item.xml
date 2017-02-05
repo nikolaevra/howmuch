@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
+        <me.grantland.widget.AutofitTextView
             android:id="@+id/foodName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -17,15 +17,14 @@
             android:text="Food"
             android:textColor="@android:color/white"
             android:textSize="20dp"/>
-    </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/foodPrice"
-        android:layout_alignParentRight="true"
-        android:textColor="@android:color/white"
-        android:fontFamily="sans-serif-medium"
-        android:textSize="20dp"
-        android:text="Price"/>
+        <me.grantland.widget.AutofitTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/foodPrice"
+            android:textColor="@android:color/white"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="20dp"
+            android:text="Price"/>
+    </LinearLayout>
 </RelativeLayout>

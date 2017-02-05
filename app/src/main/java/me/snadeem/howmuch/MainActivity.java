@@ -633,8 +633,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         MaterialDialog dialog = new MaterialDialog.Builder(this)
                 .title("What would you like to do?")
                 .positiveText("See Menu")
-                .neutralText("Cancel")
-                .negativeText("Log Visit")
+                .neutralText("Log Visit")
+                .negativeText("Cancel")
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {

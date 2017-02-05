@@ -15,9 +15,8 @@
         <android.support.design.widget.AppBarLayout
             android:id="@+id/rootAppBar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="450dp"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -43,7 +42,7 @@
                     android:background="@drawable/quantum_ic_refresh_white_24"/>
 
             </android.support.v7.widget.Toolbar>
-`
+
             <android.support.design.widget.CollapsingToolbarLayout
                 android:id="@+id/collapsing_toolbar"
                 android:layout_width="match_parent"
@@ -57,16 +56,16 @@
                     android:layout_height="match_parent"
                     app:layout_collapseMode="parallax"/>
 
+
             </android.support.design.widget.CollapsingToolbarLayout>
-
         </android.support.design.widget.AppBarLayout>
-
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/restaurantList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        android:id="@+id/restaurantList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
     </android.support.design.widget.CoordinatorLayout>
+
 
     <android.support.design.widget.NavigationView
 
