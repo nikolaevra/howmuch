@@ -17,11 +17,13 @@ import FirebaseDatabase
 extension MapViewController: UITableViewDelegate, UITableViewDataSource {
 
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 3
+		return restaurants.count
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "restaurantCell", for: indexPath)
+		let cell = tableView.dequeueReusableCell(withIdentifier: "restaurantCell", for: indexPath) as! RestaurantTableViewCell
+
+		cell.set(restaurants[indexPath.row])
 		return cell
 	}
 
@@ -30,7 +32,19 @@ extension MapViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 class MapViewController: UIViewController {
+	var added = false
 	@IBAction func didChangeSeg(_ sender: UISegmentedControl) {
+
+		if(!added){
+			tableHideView = UIView(frame: self.view.frame)
+			let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 20.0))
+			label.text = "No result! Try search different location."
+			label.center = tableHideView.center
+			tableHideView.addSubview(label)
+			tableView.addSubview(tableHideView)
+			added = true
+
+		}
 
 		//Map
 		if(sender.selectedSegmentIndex == 0) {
@@ -42,6 +56,13 @@ class MapViewController: UIViewController {
 			let tv = self.tableView
 			UIView.transition(from: fv!, to: tv!
 				, duration: 1.0, options: [.transitionFlipFromRight, .showHideTransitionViews], completion: nil)
+
+			tableView.reloadData()
+			if (restaurants.count == 0) {
+				tableHideView.isHidden = false
+			}else{
+				tableHideView.isHidden = true
+			}
 		}
 		// set a transition style
 
@@ -49,7 +70,7 @@ class MapViewController: UIViewController {
 		// with no animation block, and a completion block set to 'nil' this makes a single line of code
 
 	}
-
+	var tableHideView:UIView!
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var mapViewContainer: UIView!
 	var restaurants:[Restaurant] = []
@@ -82,6 +103,7 @@ tableView.tableFooterView = UIView()
 
 			self.updateMarkers()
 			ActivityIndicator.shareInstance.hideIndicator()
+			self.tableView.reloadData()
 		}
 
 		let camera = GMSCameraPosition.camera(withLatitude: LocationManager.getLat(), longitude: LocationManager.getLng(), zoom: 11.0)
@@ -171,7 +193,7 @@ extension MapViewController: GMSMapViewDelegate {
 	}
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		JGAlert.show(nil, title: "Store", message: nil, preferredStyle: .actionSheet, options: ["View Details", "Call Store", "Navigate to Store"], destructiveOptions: nil, completed: nil)
+		JGAlert.show(nil, title: "Store", message: nil, preferredStyle: .actionSheet, options: ["View Details", "Call Store", "Navigate to Store", "I am going now!"], destructiveOptions: nil, completed: nil)
 		tableView.deselectRow(at: indexPath, animated: true)
 	}
 
@@ -188,6 +210,7 @@ extension MapViewController: GMSMapViewDelegate {
 
 			self.updateMarkers()
 			ActivityIndicator.shareInstance.hideIndicator()
+			self.tableView.reloadData()
 		}
 
 		let camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude, longitude: coordinate.longitude, zoom: 11.0)

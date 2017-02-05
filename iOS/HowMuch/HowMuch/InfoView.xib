@@ -165,8 +165,8 @@
     </objects>
     <resources>
         <image name="food" width="1320" height="732"/>
-        <image name="location" width="16" height="16"/>
-        <image name="phone" width="16" height="16"/>
-        <image name="time" width="16" height="16"/>
+        <image name="location" width="12" height="12"/>
+        <image name="phone" width="12" height="12"/>
+        <image name="time" width="12" height="12"/>
     </resources>
 </document>

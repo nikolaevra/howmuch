@@ -10,12 +10,27 @@ import UIKit
 
 class RestaurantTableViewCell: UITableViewCell {
 
-	@IBOutlet weak var restImgView: UIImageView!
-	@IBOutlet weak var phoneLabel: UILabel!
-	@IBOutlet weak var addLabel: UILabel!
-	@IBOutlet weak var hourLabel: UILabel!
-	@IBOutlet weak var nameLabel: UILabel!
+	@IBOutlet weak var foodname: UILabel!
+	@IBOutlet weak var storename: UILabel!
+	@IBOutlet weak var price: UILabel!
 
+	@IBOutlet weak var addr: UILabel!
+
+	@IBOutlet weak var phone: UILabel!
+
+	func set(_ store:Restaurant) {
+		if(store.menus.count != 0){
+			foodname.text = store.menus[0].food_name
+			price.text = "\(store.menus[0].food_price)"
+		}else{
+			foodname.text = "Delux Burger"
+			price.text = "$ 13.99"
+		}
+		addr.text = store.address
+		phone.text = store.phone
+
+
+	}
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
