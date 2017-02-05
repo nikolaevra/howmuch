@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
-        <item android:id="@+id/refresh"
-              android:title="History"
-              android:icon="@android:drawable/ic_menu_add" />
 
-        <item android:id="@+id/stop"
+    <group android:id="@+id/grp1" android:checkableBehavior="single" >
+        <item android:id="@+id/historyButton"
+              android:title="History"
+              android:icon="@drawable/ic_history_black_48dp" />
+        </group>
+
+
+    <group android:id="@+id/grp2" android:checkableBehavior="single" >
+        <item android:id="@+id/logOutButton"
               android:title="Log Out"
-              android:icon="@android:drawable/ic_menu_send" />
+              android:icon="@drawable/ic_exit_to_app_black_48dp" />
     </group>
 </menu>

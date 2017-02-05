@@ -8,51 +8,38 @@
 
 
     <android.support.design.widget.CoordinatorLayout
-        android:id="@+id/rootLayout"
+        android:id="@+id/rootCoordinatorLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <android.support.design.widget.AppBarLayout
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/colorPrimary"
+                android:contentInsetEnd="0dp"
+                android:contentInsetLeft="0dp"
+                android:contentInsetRight="0dp"
+                android:contentInsetStart="0dp"
+                app:contentInsetEnd="0dp"
+                app:contentInsetLeft="0dp"
+                app:contentInsetRight="0dp"
+                app:contentInsetStart="0dp"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:contentInsetLeft="0dp"
-                    android:contentInsetStart="0dp"
-                    app:contentInsetLeft="0dp"
-                    app:contentInsetStart="0dp"
-                    android:contentInsetRight="0dp"
-                    android:contentInsetEnd="0dp"
-                    app:contentInsetRight="0dp"
-                    app:contentInsetEnd="0dp"
-                    android:background="?attr/colorPrimary"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
-
-            </android.support.design.widget.AppBarLayout>
+        </android.support.design.widget.AppBarLayout>
 
             <FrameLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-                          xmlns:map="http://schemas.android.com/apk/res-auto"
-                          xmlns:tools="http://schemas.android.com/tools"
-                          android:id="@+id/map"
-                          android:name="com.google.android.gms.maps.SupportMapFragment"
-                          android:layout_width="match_parent"
-                          android:layout_height="match_parent"
-                          map:cameraZoom="13"
-                          tools:context="me.snadeem.howmuch.MapsActivity"/>
+                android:id="@+id/mapContainer"
+                android:layout_height="wrap_content"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/redoButton"
@@ -66,17 +53,17 @@
                     app:fabSize="normal"/>
             </FrameLayout>
 
-        </LinearLayout>
     </android.support.design.widget.CoordinatorLayout>
+
     <android.support.design.widget.NavigationView
 
-        android:id="@+id/navigation_drawer"
+        android:id="@+id/navigationView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:headerLayout="@layout/navigation_header"
+        android:theme="@style/NavigationTheme"
         app:itemIconTint="#484848"
         app:itemTextColor="#484848"
-        app:menu="@menu/nav_items" />
+        app:menu="@menu/nav_items"/>
 
 </android.support.v4.widget.DrawerLayout>

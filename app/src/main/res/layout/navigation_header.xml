@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="192dp"
-             android:theme="@style/ThemeOverlay.AppCompat.Dark">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="192dp"
+              android:background="@drawable/blue_gradient"
+              android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/material_design_thing" />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        app:civ_border_color="#FF000000"
+        app:civ_border_width="1dp"/>
 
-    <TextView
+    <me.grantland.widget.AutofitTextView
+        android:id="@+id/navigationDrawerTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_margin="18dp"
-        android:text="Navigation Drawer"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        android:textStyle="bold" />
-
-</FrameLayout>
+        android:layout_alignParentBottom="true"
+        android:layout_margin="8dp"
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
+</RelativeLayout>

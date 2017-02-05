@@ -3,19 +3,25 @@ package me.snadeem.howmuch;
 import android.Manifest;
 import android.animation.IntEvaluator;
 import android.animation.ValueAnimator;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +32,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -39,21 +46,30 @@ import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
+import com.google.firebase.auth.FirebaseAuth;
+import com.koushikdutta.ion.Ion;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+import me.grantland.widget.AutofitTextView;
+
+import static me.snadeem.howmuch.LoginActivity.facebookName;
+import static me.snadeem.howmuch.LoginActivity.imageURL;
 import static me.snadeem.howmuch.R.id.amountEdit;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
-        LocationListener {
+        LocationListener,
+        OnHistoryItemClickListener {
 
-    private GoogleMap mMap;
+    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
     Marker mCurrLocationMarker;
     LocationRequest mLocationRequest;
 
-    int radiusInMetres = 5000;
+    int radiusInMetres = 1000;
+    private GoogleMap mMap;
     private DrawerLayout androidDrawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private ValueAnimator vAnimator;
@@ -69,28 +85,32 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkLocationPermission();
         }
+
+        FragmentManager fm = getSupportFragmentManager();
+        SupportMapFragment supportMapFragment = SupportMapFragment.newInstance();
+        fm.beginTransaction().replace(R.id.mapContainer, supportMapFragment).commit();
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        supportMapFragment.getMapAsync(this);
 
         showHowMuchDialog();
 
         FloatingActionButton redoButton = (FloatingActionButton) findViewById(R.id.redoButton);
 
-        redoButton.setOnClickListener(view -> {
-            showHowMuchDialog();
-        });
+        redoButton.setOnClickListener(view -> showHowMuchDialog());
 
-        initInstancesDrawer();
+        initializeDrawer();
+
     }
 
-
     private void showHowMuchDialog() {
-        View dialogView = getLayoutInflater().inflate(R.layout.activity_main, null);
+        View dialogView = getLayoutInflater().inflate(R.layout.how_much_dialog, null);
         AlertDialog dialog = new AlertDialog.Builder(this).create();
         dialog.setView(dialogView);
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.setCancelable(false);
+        dialog.show();
+
+
         Button goButton = (Button) dialogView.findViewById(R.id.goButton);
         EditText editText = (EditText) dialogView.findViewById(amountEdit);
         SeekBar seekBar = (SeekBar) dialogView.findViewById(R.id.radiusBar);
@@ -99,8 +119,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         goButton.setOnClickListener(v -> {
             if (!editText.getText().toString().equals("")
                     && Double.parseDouble(editText.getText().toString()) >= 0) {
-         dialog.dismiss();
-                radiusInMetres = (seekBar.getProgress() +1) * 1000;
+                dialog.dismiss();
+                radiusInMetres = (seekBar.getProgress() + 1) * 1000;
                 setAnimationCircleOnCurrentLocationWithRadius();
                 vAnimator.start();
             } else {
@@ -121,12 +141,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
 
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
-                radiusText.setText(String.valueOf(progress+1));
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                radiusText.setText(String.valueOf(progress + 1));
             }
         });
-        dialog.setCancelable(false);
-        dialog.show();
     }
 
     private void setAnimationCircleOnCurrentLocationWithRadius() {
@@ -148,19 +166,86 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
     }
 
-
-    private void initInstancesDrawer() {
+    private void initializeDrawer() {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("How Much Hub");
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         androidDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, androidDrawerLayout, R.string.app_name, R.string.app_name);
         androidDrawerLayout.addDrawerListener(actionBarDrawerToggle);
 
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navigationView);
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        selectDrawerItem(menuItem);
+                        return true;
+                    }
+                });
+
+
+        View navHeaderView = navigationView.inflateHeaderView(R.layout.navigation_header);
+        AutofitTextView navigationDrawerTitle = (AutofitTextView) navHeaderView.findViewById(R.id.navigationDrawerTitle);
+        CircleImageView profilePicture = (CircleImageView) navHeaderView.findViewById(R.id.profile_image);
+
+        Ion.with(this)
+                .load(imageURL)
+                .asBitmap()
+                .setCallback((e, result) -> {
+
+                    if (e != null) {
+                        Log.e("profile image error", e.toString());
+                        return;
+                    }
+                    profilePicture.setImageBitmap(result);
+                });
+
+        if (navigationDrawerTitle != null) navigationDrawerTitle.setText("Hello, " + facebookName);
+
+    }
+
+    public void selectDrawerItem(MenuItem menuItem) {
+        // Create a new fragment and specify the fragment to show based on nav item clicked
+        Fragment fragment = null;
+        Class fragmentClass = null;
+        switch (menuItem.getItemId()) {
+            case R.id.historyButton:
+                fragmentClass = HistoryFragment.class;
+                break;
+            case R.id.logOutButton:
+                FirebaseAuth.getInstance().signOut();
+                LoginManager.getInstance().logOut();
+                (getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE))
+                        .edit().clear().apply();
+                Intent loginIntent = new Intent(this, LoginActivity.class);
+                loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                loginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(loginIntent);
+                finish();
+        }
+
+        if (fragmentClass != null) {
+            try {
+                fragment = (Fragment) fragmentClass.newInstance();
+                // Insert the fragment by replacing any existing fragment
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.mapContainer, fragment).commit();
+
+                // Highlight the selected item has been done by NavigationView
+                menuItem.setChecked(true);
+                // Set action bar title
+                setTitle(menuItem.getTitle());
+                // Close the navigation drawer
+                androidDrawerLayout.closeDrawers();
+            } catch (Exception e) {
+                Log.e("nav", e.toString());
+            }
+        }
     }
 
     @Override
@@ -201,6 +286,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             buildGoogleApiClient();
             mMap.setMyLocationEnabled(true);
         }
+
     }
 
     protected synchronized void buildGoogleApiClient() {
@@ -218,9 +304,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         if (item.getItemId() == android.R.id.home) {
-            if(androidDrawerLayout.isDrawerOpen(Gravity.LEFT)) {
+            if (androidDrawerLayout.isDrawerOpen(Gravity.LEFT)) {
                 androidDrawerLayout.closeDrawer(Gravity.LEFT);
-            }else{
+            } else {
                 androidDrawerLayout.openDrawer(Gravity.LEFT);
             }
 
@@ -248,6 +334,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
 
+    boolean firstLoad = true;
     @Override
     public void onLocationChanged(Location location) {
 
@@ -258,9 +345,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
-        //move map camera
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-
+        if (firstLoad) {
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
+            firstLoad = false;
+        }
+        else {
+            //move map camera
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        }
         //stop location updates
         if (mGoogleApiClient != null) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
@@ -273,8 +365,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onConnectionFailed(ConnectionResult connectionResult) {
 
     }
-
-    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
     public boolean checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(this,
@@ -339,5 +429,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             // other 'case' lines to check for other permissions this app might request.
             // You can add here other case statements according to your requirement.
         }
+    }
+
+    @Override
+    public void onHistoryItemClick() {
+
     }
 }

@@ -16,4 +16,9 @@
         <item name="android:windowExitAnimation">@anim/dialog_slide_down</item>
     </style>
 
+    <style name="NavigationTheme" parent="AppTheme">
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_marginBottom">02dp</item>
+    </style>
+
 </resources>

@@ -191,6 +191,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void goToMainActivity() {
         Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         facebookName =  FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
         imageURL = FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString();
         startActivity(intent);
