@@ -12,24 +12,33 @@
     android:paddingTop="@dimen/activity_vertical_margin">
 
 
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:id="@+id/logo"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/android_no_background_no_fill"
+        android:layout_centerVertical="true"/>
+
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_centerVertical="true"
+        android:layout_below="@id/logo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"/>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="How Much?"
+        android:fontFamily="sans-serif-medium"
         android:layout_centerHorizontal="true"
         android:textSize="30dp"
+        android:layout_margin="@dimen/activity_horizontal_margin"
         android:textStyle="bold"
         android:textColor="@android:color/white"
-        android:layout_above="@id/login_button"
+        android:layout_above="@id/logo"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
     <Button

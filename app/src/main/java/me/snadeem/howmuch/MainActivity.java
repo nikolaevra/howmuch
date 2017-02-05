@@ -3,11 +3,13 @@ package me.snadeem.howmuch;
 import android.Manifest;
 import android.animation.IntEvaluator;
 import android.animation.ValueAnimator;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -21,6 +23,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
@@ -34,6 +39,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -47,8 +55,11 @@ import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.koushikdutta.ion.Ion;
+
+import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.grantland.widget.AutofitTextView;
@@ -62,30 +73,37 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener,
-        OnHistoryItemClickListener {
+        OnHistoryItemClickListener, GoogleMap.OnMarkerClickListener,
+        OnRestaurantItemClickListener {
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+    public static Location mLastLocation;
     GoogleApiClient mGoogleApiClient;
-    Location mLastLocation;
     Marker mCurrLocationMarker;
     LocationRequest mLocationRequest;
+    ArrayList<RestaurantModel> restaurantsList;
 
     int radiusInMetres = 1000;
+    boolean firstLoad = true;
     private GoogleMap mMap;
     private DrawerLayout androidDrawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private ValueAnimator vAnimator;
     private FloatingActionButton redoFAB;
+    private GoogleApiClient mClient;
+    private RecyclerView mRestaurantRecyclerView;
+    private MyRestaurantRecyclerViewAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         vAnimator = new ValueAnimator();
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        restaurantsList = new ArrayList<>();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkLocationPermission();
         }
 
@@ -103,9 +121,18 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         initializeDrawer();
 
+        mRestaurantRecyclerView = (RecyclerView) findViewById(R.id.restaurantList);
+        mRestaurantRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mAdapter = new MyRestaurantRecyclerViewAdapter(restaurantsList, this);
+
+        mRestaurantRecyclerView.setAdapter(mAdapter);
+        mRestaurantRecyclerView.addItemDecoration(new DividerItemDecoration(this,
+                DividerItemDecoration.VERTICAL));
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        mClient = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
-
-
 
     private void showHowMuchDialog() {
         View dialogView = getLayoutInflater().inflate(R.layout.how_much_dialog, null);
@@ -115,19 +142,36 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         dialog.setCancelable(false);
         dialog.show();
 
-
         Button goButton = (Button) dialogView.findViewById(R.id.goButton);
         EditText editText = (EditText) dialogView.findViewById(amountEdit);
         SeekBar seekBar = (SeekBar) dialogView.findViewById(R.id.radiusBar);
 
+        // Clear existing session data
         vAnimator.cancel();
+        if (mMap != null) mMap.clear();
+        restaurantsList.clear();
+
         goButton.setOnClickListener(v -> {
             if (!editText.getText().toString().equals("")
                     && Double.parseDouble(editText.getText().toString()) >= 0) {
+
                 dialog.dismiss();
                 radiusInMetres = (seekBar.getProgress() + 1) * 1000;
+                Double price = Double.parseDouble(editText.getText().toString());
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+                        mGoogleApiClient);
+                retrieveInformationFromServer(price, radiusInMetres, mLastLocation.getLatitude(), mLastLocation.getLongitude());
                 setAnimationCircleOnCurrentLocationWithRadius();
-                vAnimator.start();
             } else {
                 Toast.makeText(MainActivity.this, "Please enter a valid dollar amount!", Toast.LENGTH_LONG).show();
             }
@@ -152,8 +196,80 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
     }
 
-    private void setAnimationCircleOnCurrentLocationWithRadius() {
+    private void retrieveInformationFromServer(Double price, int radiusInMetres, double latitude, double longitude) {
+        ProgressDialog dialog = ProgressDialog.show(this, "Getting restaurants nearby...",
+                "Hang tight, we're doing the math!", true);
+        final String URL = "http://138.197.132.178/get-location";
+        Ion.with(getApplicationContext())
+                .load(URL)
+                .setBodyParameter("lat", String.valueOf(latitude))
+                .setBodyParameter("lon", String.valueOf(longitude))
+                .setBodyParameter("price", String.valueOf(price))
+                .setBodyParameter("radius", String.valueOf(radiusInMetres))
+                .asJsonObject()
+                .setCallback((e, result) -> {
+                    vAnimator.start();
+                    dialog.dismiss();
+                    /*JsonArray dataArray = result.get("data").getAsJsonArray();
 
+                    for (int i = 0; i < dataArray.size(); ++i) {
+                        Gson gson = new Gson();
+                        RestaurantModel curr = gson.fromJson(dataArray.get(i).getAsString(), RestaurantModel.class);
+                        curr.setDistanceToMyLocation(getDistanceToMyLocation(curr));
+                        restaurantsList.add(curr);
+                    }*/
+
+                    for (int i = 0; i < 3; i++) {
+                        RestaurantModel curr = new RestaurantModel();
+                        curr.setLat(String.valueOf(mLastLocation.getLatitude()));
+                        curr.setLon(String.valueOf(mLastLocation.getLongitude()));
+                        curr.setDistanceToMyLocation(getDistanceToMyLocation(curr));
+                        curr.setRestaurant_name("test");
+                        restaurantsList.add(curr);
+                    }
+                    mAdapter.notifyDataSetChanged();
+                    addMarkersToMap();
+                    setZoomToCurrentRadius();
+                });
+    }
+
+    private double getDistanceToMyLocation(RestaurantModel curr) {
+        Location loc1 = new Location("");
+        loc1.setLatitude(Double.parseDouble(curr.getLat()));
+        loc1.setLongitude(Double.parseDouble(curr.getLon()));
+
+        Location loc2 = new Location("");
+        loc2.setLatitude(mLastLocation.getLatitude());
+        loc2.setLongitude(mLastLocation.getLongitude());
+
+        return Math.abs(loc1.distanceTo(loc2));
+    }
+
+    private void setZoomToCurrentRadius() {
+        LatLng l = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
+        Circle circle = mMap.addCircle(new CircleOptions().
+                center(l).radius(radiusInMetres));
+        circle.setVisible(false);
+        int zoomLevel = 15;
+        if (circle != null) {
+            double radius = circle.getRadius();
+            double scale = radius / 500;
+            zoomLevel = (int) (16 - Math.log(scale) / Math.log(2));
+        }
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(l, zoomLevel));
+    }
+
+    private void addMarkersToMap() {
+
+        for (int i = 0; i < restaurantsList.size(); ++i) {
+            RestaurantModel curr = restaurantsList.get(i);
+            mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(Double.parseDouble(curr.getLat()), Double.parseDouble(curr.getLon())))
+                    .title(curr.getRestaurant_name()));
+        }
+    }
+
+    private void setAnimationCircleOnCurrentLocationWithRadius() {
 
         LatLng latLng = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
         final Circle circle = mMap.addCircle(new CircleOptions().center(latLng)
@@ -241,7 +357,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction ft = fragmentManager.beginTransaction();
                 ft.replace(R.id.mapContainer, fragment);
-
                 ft.addToBackStack(null);
                 ft.commit();
 
@@ -292,7 +407,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
         //Initialize Google Play Services
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(this,
                     Manifest.permission.ACCESS_FINE_LOCATION)
                     == PackageManager.PERMISSION_GRANTED) {
@@ -343,7 +458,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 == PackageManager.PERMISSION_GRANTED) {
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
         }
-
     }
 
     @Override
@@ -351,7 +465,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
 
-    boolean firstLoad = true;
     @Override
     public void onLocationChanged(Location location) {
 
@@ -362,14 +475,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
-        if (firstLoad) {
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
-            firstLoad = false;
-        }
-        else {
-            //move map camera
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        }
+        //move map camera
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+
         //stop location updates
         if (mGoogleApiClient != null) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
@@ -451,5 +559,49 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onHistoryItemClick() {
 
+    }
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+                .setName("Main Page") // TODO: Define a title for the content shown.
+                // TODO: Make sure this auto-generated URL is correct.
+                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+                .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+                .setObject(object)
+                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+                .build();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        mClient.connect();
+        AppIndex.AppIndexApi.start(mClient, getIndexApiAction());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.end(mClient, getIndexApiAction());
+        mClient.disconnect();
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        switch (marker.getId()) {
+
+        }
+        return false;
     }
 }

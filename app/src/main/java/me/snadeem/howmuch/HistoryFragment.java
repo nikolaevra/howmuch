@@ -80,7 +80,6 @@ public class HistoryFragment extends Fragment implements OnHistoryItemClickListe
             }
 
             mAdapter = new MyHistoryRecyclerViewAdapter(historyList, mListener);
-            //TODO replace null
             recyclerView.setAdapter(mAdapter);
             recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),
                     DividerItemDecoration.VERTICAL));

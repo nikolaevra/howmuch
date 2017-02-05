@@ -10,11 +10,13 @@
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/rootCoordinatorLayout"
         android:layout_width="match_parent"
+        android:fitsSystemWindows="true"
         android:layout_height="match_parent">
 
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
+            android:fitsSystemWindows="true"
             android:layout_height="wrap_content">
 
             <android.support.v7.widget.Toolbar
@@ -28,6 +30,7 @@
                 android:contentInsetStart="0dp"
                 app:contentInsetEnd="0dp"
                 app:contentInsetLeft="0dp"
+                android:fitsSystemWindows="true"
                 app:contentInsetRight="0dp"
                 app:contentInsetStart="0dp"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
@@ -38,6 +41,7 @@
             <FrameLayout
                 android:layout_width="wrap_content"
                 android:id="@+id/mapContainer"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 android:layout_height="wrap_content"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -52,6 +56,21 @@
                     android:src="@drawable/quantum_ic_refresh_white_24"
                     app:fabSize="normal"/>
             </FrameLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            >
+
+          <android.support.v7.widget.RecyclerView
+              android:layout_width="match_parent"
+              android:fitsSystemWindows="true"
+              android:layout_height="wrap_content"
+              app:layoutManager="LinearLayoutManager"
+              android:id="@+id/restaurantList"/>
+        </android.support.v4.widget.NestedScrollView>
 
     </android.support.design.widget.CoordinatorLayout>
 
