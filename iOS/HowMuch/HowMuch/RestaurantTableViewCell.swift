@@ -21,7 +21,7 @@ class RestaurantTableViewCell: UITableViewCell {
 	func set(_ store:Restaurant) {
 		if(store.menus.count != 0){
 			foodname.text = store.menus[0].food_name
-			price.text = "\(store.menus[0].food_price)"
+			price.text = "$ \(store.menus[0].food_price)"
 		}else{
 			foodname.text = "Delux Burger"
 			price.text = "$ 13.99"
