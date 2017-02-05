@@ -84,16 +84,15 @@ public class HistoryFragment extends Fragment implements OnHistoryItemClickListe
             recyclerView.setAdapter(mAdapter);
             recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),
                     DividerItemDecoration.VERTICAL));
-            retrieveInformationFromServer();
+            retrieveHistoryFromServer();
 
         return view;
     }
 
-    private void retrieveInformationFromServer() {
+    private void retrieveHistoryFromServer() {
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         DatabaseReference testHistory
                 = mDatabase.child("history").child("CjB8RBwhaydsah3WtKxbQXzcwGF3").orderByChild("timestamp").getRef();
-
 
         testHistory.addValueEventListener(new ValueEventListener() {
             @Override
