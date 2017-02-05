@@ -29,7 +29,9 @@ class HistoryTableViewCell: UITableViewCell {
 
 		restaurantNameLabel.text = history.restaurantName
 		timestampLabel.text = history.timestamp.getLocalizedStringWith(.medium, timeStyle: .medium)
-		priceLAbel.text = "you spent $ \(history.moneySpent)"
+		priceLAbel.text = String(format: "You spent $ %.2f", history.moneySpent)
+
+
 
 		let camera = GMSCameraPosition.camera(withLatitude: history.lat, longitude: history.lng, zoom: 16.0)
 

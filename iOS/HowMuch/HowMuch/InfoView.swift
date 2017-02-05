@@ -27,7 +27,7 @@ class InfoView: UIView {
 	func set(store: Restaurant) {
 		if(store.menus.count != 0) {
 			menuName.text = store.menus[0].food_name
-			foodPrice.text = "$ \(store.menus[0].food_price)"
+			foodPrice.text = String(format: "$ %.2f", store.menus[0].food_price)
 		}
 		phoneNumber.text  = store.phone
 		restName.text = store.restaurant_name
