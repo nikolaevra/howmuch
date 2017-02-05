@@ -96,8 +96,8 @@ def curl_request(lat, lon, radius, price):
                   '&v=20170204').format(lat=lat, lon=lon, rad=radius)
 
     zomato = ('https://developers.zomato.com/api/v2.1/search?'
-           'lat={lat}&lon={lon}&radius={rad}&sort=cost&'
-           'order=asc').format(lat=lat, lon=lon, rad=radius)
+           'lat={lat}&lon={lon}&radius={rad}&sort=cost'
+           '&order=asc').format(lat=lat, lon=lon, rad=radius)
 
     try:
         zomato_request = requests.get(zomato, headers=zomato_headers).content
